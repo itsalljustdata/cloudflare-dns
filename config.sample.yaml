@@ -1,0 +1,6 @@
+APP:
+    DEBUG: True
+
+  CF:
+    EMAIL: your_CF@email.com
+    TOKEN: sW7rbAMX3n4J6lOSC0Q6MS3eyeLQhHjrfson1
