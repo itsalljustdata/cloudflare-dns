@@ -138,6 +138,12 @@ def connect (theConfig):
     return CloudFlare.CloudFlare(token=theConfig.get(['CF','TOKEN']),email=theConfig.get(['CF','EMAIL']))
 
 if __name__ == '__main__':
-    CONFIG = getConfig(Path('__file__').parent.parent.joinpath('config.yaml'))
+    configFile = Path('__file__').parent.parent.joinpath('config.yaml')
+    if not configFile.is_file():
+        configSample = configFile.with_stem(f"{configFile.stem}.sample")
+        configFile.write_bytes(configSample.read_bytes())
+        raise Exception (f'default {str(configFile)} created, please update values')
+
+    CONFIG = getConfig(configFile)
     ic(getVersion())
     main(CONFIG)
